@@ -59,7 +59,7 @@ namespace EmergencyServicesBot
         private Task OnIncomingCallReceived(IncomingCallEvent incomingCallEvent)
         {
 
-            var record = CreateRecordingAction("Hello! It's mega ultra super B A D Sparrows bot! How may I help you?", Intent.WelcomeMessage);
+            var record = CreateRecordingAction("Hello! It's mega ultra super B A D Sparrows bot! How may I help you? You can choose documents or car.", Intent.WelcomeMessage);
 
             this.incomingCallEvent = incomingCallEvent;
             this.incomingCallEvent.ResultingWorkflow.Actions = new List<ActionBase> {
@@ -120,8 +120,17 @@ namespace EmergencyServicesBot
                             }
                             else
                             {
-                                actions.Add(CreateRecordingAction(
-                                    $"We couldn't recognize your message. Did you say {spokenText}? You should choose either Documents or Car. Please repeat.", Intent.WelcomeMessage));
+                                if (spokenText.Contains("REPEAT"))
+                                {
+                                    actions.Add(CreateRecordingAction(
+                                        $"We couldn't recognize your message. You should choose either Documents or Car. Please repeat.", Intent.WelcomeMessage));
+                                }
+                                else
+                                {
+                                    actions.Add(CreateRecordingAction(
+                                        $"We couldn't recognize your message. Did you say {spokenText}? You should choose either Documents or Car. Please repeat.", Intent.WelcomeMessage));
+                                }
+                                
                             }
                             break;
                         case (int)Intent.CarQuery:
