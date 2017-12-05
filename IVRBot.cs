@@ -110,7 +110,7 @@ namespace EmergencyServicesBot
                         case (int)Intent.WelcomeMessage:
                             if (spokenText.ToUpperInvariant().Contains("CAR"))
                             {
-                                actions.Add(CreateRecordingAction("what kind of car do you want?", Intent.CarQuery));
+                                actions.Add(CreateRecordingAction("what kind of car do you want? ", Intent.CarQuery));
                             }
                             else if (spokenText.ToUpperInvariant().Contains("DOCUMENT") &&
                                      !spokenText.ToUpperInvariant().Contains("CAR"))
